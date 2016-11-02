@@ -14,9 +14,8 @@ namespace DiagnosticML.Controllers
 
         public ActionResult Index()
         {
-            var x = (from m in dbML.temptables select m).ToList();
-            ViewBag.Message = x.FirstOrDefault().text;
-            
+
+            ViewBag.Message = "Index Message: Should not see";
             
            // List<temptable> StudentCountTrend = dbML.temptable(id, "text").ToList();
 
@@ -40,7 +39,8 @@ namespace DiagnosticML.Controllers
 
         public ActionResult Classifier()
         {
-            ViewBag.Message = "Application Page";
+            var x = (from m in dbML.temptables select m).ToList();
+            ViewBag.Message = x.FirstOrDefault().text;
 
             return View();
 
