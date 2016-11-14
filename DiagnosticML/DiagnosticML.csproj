@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Classifier.css" />
+    <Content Include="Scripts\post96.js" />
     <Content Include="Scripts\pre96.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

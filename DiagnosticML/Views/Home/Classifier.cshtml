@@ -7,16 +7,20 @@
 
 <body>
     <div id="selectionDiv">
-        <input type="radio" name="pre96" id="choice-pre96">
-        <label for="choice-pre96">Pre-1996 Data</label>>
+        <input type="radio" "name="pres96" id="choice-pre96" onClick="toggleSelection();"/>
+        <label for="choice-pre96">Post-1996 Data</label>
+        <input type="radio" name="post96" id="choice-post96">
+        <label for="choice-post96">Pre-1996 Data</label>
     </div>
+    
     <div id="pre96">
-        @Scripts.Render("~/Scripts/pre96.js")
+       @Scripts.Render("~/Scripts/pre96.js")
+    @Styles.Render("~/Content/Classifier.css")
+    </div>
+    <div id="post96">
+        @Scripts.Render("~/Scripts/post96.js")
         @Styles.Render("~/Content/Classifier.css")
     </div>
-    <!----<div id="post96">
-        <h1>Post-1996 Form Here</h1>
-    </div>-->
 </body>
 
 

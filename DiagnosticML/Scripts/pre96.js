@@ -16,7 +16,7 @@ var linebreak = document.createElement('br');
 createform.appendChild(linebreak);
 
 /******************************************************************************************/
-// Create Labels and Inputs
+// Create Labels and Inputs For Pre 1996 Data
 /******************************************************************************************/
 
 //Clump Thickness
@@ -65,7 +65,7 @@ createform.appendChild(linebreak4);
 
 //Bare Nuclei
 var nuclabel = document.createElement('label'); 
-nuclabel.innerHTML = "Bare Nuclei"; 
+nuclabel.innerHTML = "Bare Nuclei         "; 
 createform.appendChild(nuclabel);
 var nucInelement = document.createElement('input');
 nucInelement.setAttribute("type", "text");
@@ -107,24 +107,30 @@ createform.appendChild(mitosisInelement);
 var linebreak8 = document.createElement('br');
 createform.appendChild(linebreak8);
 
+var submitelement = document.createElement('input'); // Append Submit Button
+submitelement.setAttribute("type", "submit");
+submitelement.setAttribute("name", "submita");
+submitelement.setAttribute("value", "Submit");
+createform.appendChild(submitelement);
 /******************************************************************************************/
 
 
 
-var submitelement = document.createElement('input'); // Append Submit Button
-submitelement.setAttribute("type", "submit");
-submitelement.setAttribute("name", "submitb");
-submitelement.setAttribute("value", "Submit");
-createform.appendChild(submitelement);
+var pre96 = document.getElementById("choice-pre96");
+var preDiv = document.getElementById("pre96");
+preDiv.className = "hidden";
 
-var form = document.querySelector("form");
-form.addEventListener("submitb", function (event) {
-    console.log("Saving value", form.elements.value.value);
-    event.preventDefault();
-});
-
-var tos = document.getElementsByName("pres96");
 function toggleSelection() {
-    tos.className = "hidden";
+
+    
+        postDiv.className = "active";
+        preDiv.className = "hidden";
+           pre96.checked = true;
+           post96.checked = false;
+       
+    
+   
 }
-tos[0].addEventListener("click", toggleSelection, false);
+pre96.addEventListener("click", toggleSelection, false);
+//post96.addEventListener("click", toggleSelection, false);
+
