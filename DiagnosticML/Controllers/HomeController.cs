@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RDotNet;
 
 namespace DiagnosticML.Controllers
 {
@@ -39,9 +40,27 @@ namespace DiagnosticML.Controllers
 
         public ActionResult Classifier()
         {
-            var x = (from m in dbML.temptables select m).ToList();
-            ViewBag.Message = x.FirstOrDefault().text;
+            REngine.SetEnvironmentVariables();
+            REngine engine = REngine.GetInstance();
+            engine.Initialize();
 
+            NumericVector testVector = engine.CreateNumericVector(new double[] { 30.02, 29.99, 30.11, 29.97, 30.01, 29.99 });
+            var x = (from m in dbML.R_Functions where m.functionName=="stats" select m).ToList();
+            var statsFunction = engine.Evaluate(x.FirstOrDefault().script).AsFunction();
+
+            var result = statsFunction.Invoke(new SymbolicExpression[] { testVector }).AsVector();
+            int vecLen = result.Length;
+            object[] resultArray = new object[vecLen];
+            result.CopyTo(resultArray,vecLen);
+            string message = "";
+            for(int i = 0; i<vecLen; i++)
+            {
+                message += " ";
+                message += resultArray[i].ToString();
+            }
+
+            ViewBag.message = message;
+            ViewBag.statsDesc = "StatsDesc";
             return View();
 
         }

@@ -27,5 +27,6 @@ namespace DiagnosticML
     
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
         public virtual DbSet<temptable> temptables { get; set; }
+        public virtual DbSet<R_Functions> R_Functions { get; set; }
     }
 }

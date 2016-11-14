@@ -2,8 +2,25 @@
 @{
     ViewBag.Title = "Classifier";
     
+
 }
+
+<body>
+    <div id="selectionDiv">
+        <input type="radio" name="pre96" id="choice-pre96">
+        <label for="choice-pre96">Pre-1996 Data</label>>
+    </div>
+    <div id="pre96">
+        @Scripts.Render("~/Scripts/pre96.js")
+        @Styles.Render("~/Content/Classifier.css")
+    </div>
+    <!----<div id="post96">
+        <h1>Post-1996 Form Here</h1>
+    </div>-->
+</body>
+
 
 <h2>@Html.Raw(ViewBag.Message)</h2>
 <p>The above message has been loaded from the Database.</p>
+<h3>@Html.Raw(ViewBag.statsDesc)</h3>
 

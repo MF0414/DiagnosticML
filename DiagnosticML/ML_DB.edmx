@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ML_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="R_Functions">
+          <Key>
+            <PropertyRef Name="functionName" />
+          </Key>
+          <Property Name="functionName" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="script" Type="varchar" MaxLength="256" />
+        </EntityType>
         <EntityType Name="temptable">
           <Key>
             <PropertyRef Name="id" />
@@ -31,6 +38,7 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
           <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ML_DBModelStoreContainer">
+          <EntitySet Name="R_Functions" EntityType="Self.R_Functions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="temptable" EntityType="Self.temptable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
             <DefiningQuery>SELECT 
@@ -66,6 +74,7 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
         <EntityContainer Name="ML_DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <EntitySet Name="temptables" EntityType="ML_DBModel.temptable" />
+          <EntitySet Name="R_Functions" EntityType="ML_DBModel.R_Functions" />
         </EntityContainer>
         <EntityType Name="temptable">
           <Key>
@@ -73,6 +82,13 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="text" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="R_Functions">
+          <Key>
+            <PropertyRef Name="functionName" />
+          </Key>
+          <Property Name="functionName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="script" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -97,6 +113,14 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
               <MappingFragment StoreEntitySet="temptable">
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="R_Functions">
+            <EntityTypeMapping TypeName="ML_DBModel.R_Functions">
+              <MappingFragment StoreEntitySet="R_Functions">
+                <ScalarProperty Name="script" ColumnName="script" />
+                <ScalarProperty Name="functionName" ColumnName="functionName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
