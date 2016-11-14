@@ -136,6 +136,7 @@ submitelement2.setAttribute("type", "submit");
 submitelement2.setAttribute("name", "submitb");
 submitelement2.setAttribute("value", "Submit");
 createform2.appendChild(submitelement2);
+submitelement2.onclick(sendOff);
 
 
 var post96 = document.getElementById("choice-post96");
@@ -153,3 +154,20 @@ function toggleSelection() {
 
 }
 post96.addEventListener("click", toggleSelection, false);
+
+function sendOff() {
+   // var data= {
+    alert("values: " + $('.text').val());
+   // };
+   /* $.ajax({
+        url: "/Home/GetEmployer",
+        type: "POST",
+        dataType: "json",  
+        data: JSON.stringify(data),
+        success: function (mydata) {
+            $("#UpdateDiv").html(mydata);
+            history.pushState('', 'New URL: '+href, href); // This Code lets you to change url howyouwant
+        });
+    return false;
+}*/
+}

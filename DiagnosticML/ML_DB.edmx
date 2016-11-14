@@ -5,6 +5,37 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ML_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ML_DB.dbo.post96' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="post96">
+          <Property Name="ID Number" Type="varchar" MaxLength="50" />
+          <Property Name="Diagnosis" Type="varchar" MaxLength="50" />
+          <Property Name="Radius" Type="varchar" MaxLength="50" />
+          <Property Name="Texture" Type="varchar" MaxLength="50" />
+          <Property Name="Perimeter" Type="varchar" MaxLength="50" />
+          <Property Name="Area" Type="varchar" MaxLength="50" />
+          <Property Name="Smoothness" Type="varchar" MaxLength="50" />
+          <Property Name="Compactness" Type="varchar" MaxLength="50" />
+          <Property Name="Concavity" Type="varchar" MaxLength="50" />
+          <Property Name="Concave Points" Type="varchar" MaxLength="50" />
+          <Property Name="Symmetry" Type="varchar" MaxLength="50" />
+          <Property Name="Fractal Dimension" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ML_DB.dbo.pre96' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="pre96">
+          <Property Name="ID Number" Type="varchar" MaxLength="50" />
+          <Property Name="Clump_Thickness" Type="varchar" MaxLength="50" />
+          <Property Name="Size_Uniformity" Type="varchar" MaxLength="50" />
+          <Property Name="Shape_Uniformity" Type="varchar" MaxLength="50" />
+          <Property Name="Marginal_Adhesion" Type="varchar" MaxLength="50" />
+          <Property Name="Single_Epithelial" Type="varchar" MaxLength="50" />
+          <Property Name="Bare_Nuclei" Type="varchar" MaxLength="50" />
+          <Property Name="Bland_Chromatin" Type="varchar" MaxLength="50" />
+          <Property Name="Normal_Nucleoli" Type="varchar" MaxLength="50" />
+          <Property Name="Mitoses" Type="varchar" MaxLength="50" />
+          <Property Name="Class" Type="varchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="R_Functions">
           <Key>
             <PropertyRef Name="functionName" />
