@@ -146,10 +146,11 @@ postDiv.className = "hidden";
 function toggleSelection() {
 
 
-    preDiv.className = "active";
-    postDiv.className = "hidden";
-    post96.checked = true;
-    pre96.checked = false;
+    postDiv.className = "active";
+    preDiv.className = "hidden";
+    post96.checked = false;
+    pre96.checked = true;
+    this.checked = false;
 
 
 }

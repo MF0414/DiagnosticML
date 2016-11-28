@@ -45,7 +45,8 @@ namespace DiagnosticML.Controllers
             engine.Initialize();
 
             NumericVector testVector = engine.CreateNumericVector(new double[] { 30.02, 29.99, 30.11, 29.97, 30.01, 29.99 });
-            var x = (from m in dbML.R_Functions where m.functionName=="stats" select m).ToList();
+            var x = (from m in dbML.R_Functions select m).ToList();
+            //(from m in dbML.R_Functions where m.functionName=="stats" select m).ToList();
             var statsFunction = engine.Evaluate(x.FirstOrDefault().script).AsFunction();
 
             var result = statsFunction.Invoke(new SymbolicExpression[] { testVector }).AsVector();
@@ -64,5 +65,6 @@ namespace DiagnosticML.Controllers
             return View();
 
         }
+
     }
 }
