@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using RDotNet;
 using Microsoft.Win32;
+using System.IO;
 
 namespace DiagnosticML.Controllers
 {
@@ -45,11 +46,19 @@ namespace DiagnosticML.Controllers
         {
             try
             {
-                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\R-core\R");
-                string rPath = (string)registryKey.GetValue("InstallPath");
-                string rVersion = (string)registryKey.GetValue("Current Version");
-                registryKey.Dispose();
-            }
+                string Rversion = "R-3.0.0";
+                    var oldPath = System.Environment.GetEnvironmentVariable("PATH");
+                    var rPath = System.Environment.Is64BitProcess ?
+                                           string.Format(@"C:\Program Files\R\{0}\bin\x64", Rversion) :
+                                           string.Format(@"C:\Program Files\R\{0}\bin\i386", Rversion);
+
+                    if (!Directory.Exists(rPath))
+                        throw new DirectoryNotFoundException(
+                          string.Format(" R.dll not found in : {0}", rPath));
+                    var newPath = string.Format("{0}{1}{2}", rPath,
+                                                 System.IO.Path.PathSeparator, oldPath);
+                    System.Environment.SetEnvironmentVariable("PATH", newPath);
+                }
             catch
             {
                 ViewBag.message = "Registry Key Error";
