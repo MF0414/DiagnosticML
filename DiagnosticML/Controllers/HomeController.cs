@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RDotNet;
+using Microsoft.Win32;
 
 namespace DiagnosticML.Controllers
 {
@@ -38,9 +39,14 @@ namespace DiagnosticML.Controllers
             return View();
         }
 
+       
+
         public ActionResult Classifier()
         {
-
+            RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\R-core\R");
+            string rPath = (string)registryKey.GetValue("InstallPath");
+            string rVersion = (string)registryKey.GetValue("Current Version");
+            registryKey.Dispose();
 
             REngine.SetEnvironmentVariables();
             REngine engine = REngine.GetInstance();
