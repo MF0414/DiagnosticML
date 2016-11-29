@@ -40,6 +40,8 @@ namespace DiagnosticML.Controllers
 
         public ActionResult Classifier()
         {
+
+
             REngine.SetEnvironmentVariables();
             REngine engine = REngine.GetInstance();
             engine.Initialize();
