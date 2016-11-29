@@ -43,11 +43,17 @@ namespace DiagnosticML.Controllers
 
         public ActionResult Classifier()
         {
-            RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\R-core\R");
-            string rPath = (string)registryKey.GetValue("InstallPath");
-            string rVersion = (string)registryKey.GetValue("Current Version");
-            registryKey.Dispose();
-
+            try
+            {
+                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\R-core\R");
+                string rPath = (string)registryKey.GetValue("InstallPath");
+                string rVersion = (string)registryKey.GetValue("Current Version");
+                registryKey.Dispose();
+            }
+            catch
+            {
+                ViewBag.message = "Registry Key Error";
+            }
             REngine.SetEnvironmentVariables();
             REngine engine = REngine.GetInstance();
             engine.Initialize();
