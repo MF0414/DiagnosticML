@@ -7,12 +7,14 @@ using System.Web.Mvc;
 using RDotNet;
 using Microsoft.Win32;
 using System.IO;
+using DiagnosticML.ViewModels;
 
 namespace DiagnosticML.Controllers
 {
     public class HomeController : Controller
     {
         ML_DBEntities dbML = new ML_DBEntities();
+        ClassifierController classifierController = new ClassifierController();
         
 
         public ActionResult Index()
@@ -40,52 +42,27 @@ namespace DiagnosticML.Controllers
             return View();
         }
 
-       
 
-        public ActionResult Classifier()
+        public ActionResult Classifier()  //Controls the Page
         {
-            try
+
+            var classifications = new List<ClassificationType>
             {
-                string Rversion = "R-3.0.0";
-                    var oldPath = System.Environment.GetEnvironmentVariable("PATH");
-                    var rPath = System.Environment.Is64BitProcess ?
-                                           string.Format(@"C:\Program Files\R\{0}\bin\x64", Rversion) :
-                                           string.Format(@"C:\Program Files\R\{0}\bin\i386", Rversion);
+                new ClassificationType {classID = 0, className = "Pre-1996 Classification" },
+                new ClassificationType {classID = 1, className = "Post-1996 Classification" }
+            };
 
-                    if (!Directory.Exists(rPath))
-                        throw new DirectoryNotFoundException(
-                          string.Format(" R.dll not found in : {0}", rPath));
-                    var newPath = string.Format("{0}{1}{2}", rPath,
-                                                 System.IO.Path.PathSeparator, oldPath);
-                    System.Environment.SetEnvironmentVariable("PATH", newPath);
-                }
-            catch
-            {
-                ViewBag.message = "Registry Key Error";
-            }
-            REngine.SetEnvironmentVariables();
-            REngine engine = REngine.GetInstance();
-            engine.Initialize();
+            return View(classifications);
+            
+           
+        }
 
-            NumericVector testVector = engine.CreateNumericVector(new double[] { 30.02, 29.99, 30.11, 29.97, 30.01, 29.99 });
-            var x = (from m in dbML.R_Functions select m).ToList();
-            //(from m in dbML.R_Functions where m.functionName=="stats" select m).ToList();
-            var statsFunction = engine.Evaluate(x.FirstOrDefault().script).AsFunction();
+        public ActionResult Classify(string className, int classID)
+        {
+                var classModel = new ClassificationChoice { choiceName = className, choiceID = classID };
+                return View(classModel);
+           
 
-            var result = statsFunction.Invoke(new SymbolicExpression[] { testVector }).AsVector();
-            int vecLen = result.Length;
-            object[] resultArray = new object[vecLen];
-            result.CopyTo(resultArray,vecLen);
-            string message = "";
-            for(int i = 0; i<vecLen; i++)
-            {
-                message += " ";
-                message += resultArray[i].ToString();
-            }
-
-            ViewBag.message = message;
-            ViewBag.statsDesc = "StatsDesc";
-            return View();
 
         }
 

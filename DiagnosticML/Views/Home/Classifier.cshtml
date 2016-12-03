@@ -1,30 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "Classifier";
-    
-
+﻿@model IEnumerable<DiagnosticML.ViewModels.ClassificationType>
+@{ 
+    ViewBag.Title = "Classification";
 }
-
-<body>
-    <div id="selectionDiv">
-        <input type="radio" name="pres96" id="choice-pre96" onClick="toggleSelection();"/>
-        <label for="choice-pre96">Post-1996 Data</label>
-        <input type="radio" name="post96" id="choice-post96">
-        <label for="choice-post96">Pre-1996 Data</label>
-    </div>
-    
-    <div id="pre96">
-       @Scripts.Render("~/Scripts/pre96.js")
-    @Styles.Render("~/Content/Classifier.css")
-    </div>
-    <div id="post96">
-        @Scripts.Render("~/Scripts/post96.js")
-        @Styles.Render("~/Content/Classifier.css")
-    </div>
-</body>
-
-<h2>@Html.Raw(ViewBag.Message)</h2>
-<!----<h2>Html.Raw(ViewBag.Message)</h2>
-<p>The above message has been loaded from the Database.</p>
-<h3>Html.Raw(ViewBag.statsDesc)</h3>-->
-
+<h2>Select Classification Data Set:</h2>
+<ul>
+    @foreach (var classification in Model)
+    {
+        <li>@Html.ActionLink(classification.className,
+     "Classify", new { className = classification.className, classID = classification.classID })</li>
+    }
+</ul>

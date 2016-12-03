@@ -183,6 +183,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClassifierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="database_firewall_rules.cs">
       <DependentUpon>ML_DB.tt</DependentUpon>
@@ -212,6 +213,9 @@
     <Compile Include="temptable.cs">
       <DependentUpon>ML_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ClassificationType.cs" />
+    <Compile Include="ViewModels\ClassifierViewModel.cs" />
+    <Compile Include="ViewModels\ClassificationChoice.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Classifier.css" />
@@ -295,11 +299,14 @@
     <Content Include="Views\Home\Classifier.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Home\pre96Entry.cshtml" />
+    <Content Include="Views\Home\Classify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Classifier\" />
+    <Folder Include="Views\Post1996ViewModel\" />
+    <Folder Include="Views\Pre1996ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
