@@ -7,6 +7,6 @@
     @foreach (var classification in Model)
     {
         <li>@Html.ActionLink(classification.className,
-     "Classify", new { className = classification.className, classID = classification.classID })</li>
+     "Classify", "Classifier", new { className = classification.className, classID = classification.classID }, null)</li>
     }
 </ul>

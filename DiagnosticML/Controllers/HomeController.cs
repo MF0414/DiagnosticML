@@ -57,14 +57,6 @@ namespace DiagnosticML.Controllers
            
         }
 
-        public ActionResult Classify(string className, int classID)
-        {
-                var classModel = new ClassificationChoice { choiceName = className, choiceID = classID };
-                return View(classModel);
-           
-
-
-        }
 
     }
 }
