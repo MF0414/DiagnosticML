@@ -12,9 +12,9 @@ namespace DiagnosticML
     using System;
     using System.Collections.Generic;
     
-    public partial class temptable
+    public partial class pre96
     {
-        public int id { get; set; }
-        public string text { get; set; }
+        public string Metric { get; set; }
+        public string Value { get; set; }
     }
 }

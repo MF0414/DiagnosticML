@@ -13,7 +13,7 @@ namespace DiagnosticML.Controllers
 {
     public class HomeController : Controller
     {
-        ML_DBEntities dbML = new ML_DBEntities();
+       
         ClassifierController classifierController = new ClassifierController();
         
 

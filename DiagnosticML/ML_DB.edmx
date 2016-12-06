@@ -5,50 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ML_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'ML_DB.dbo.post96' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="post96">
-          <Property Name="ID Number" Type="varchar" MaxLength="50" />
-          <Property Name="Diagnosis" Type="varchar" MaxLength="50" />
-          <Property Name="Radius" Type="varchar" MaxLength="50" />
-          <Property Name="Texture" Type="varchar" MaxLength="50" />
-          <Property Name="Perimeter" Type="varchar" MaxLength="50" />
-          <Property Name="Area" Type="varchar" MaxLength="50" />
-          <Property Name="Smoothness" Type="varchar" MaxLength="50" />
-          <Property Name="Compactness" Type="varchar" MaxLength="50" />
-          <Property Name="Concavity" Type="varchar" MaxLength="50" />
-          <Property Name="Concave Points" Type="varchar" MaxLength="50" />
-          <Property Name="Symmetry" Type="varchar" MaxLength="50" />
-          <Property Name="Fractal Dimension" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'ML_DB.dbo.pre96' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="pre96">
-          <Property Name="ID Number" Type="varchar" MaxLength="50" />
-          <Property Name="Clump_Thickness" Type="varchar" MaxLength="50" />
-          <Property Name="Size_Uniformity" Type="varchar" MaxLength="50" />
-          <Property Name="Shape_Uniformity" Type="varchar" MaxLength="50" />
-          <Property Name="Marginal_Adhesion" Type="varchar" MaxLength="50" />
-          <Property Name="Single_Epithelial" Type="varchar" MaxLength="50" />
-          <Property Name="Bare_Nuclei" Type="varchar" MaxLength="50" />
-          <Property Name="Bland_Chromatin" Type="varchar" MaxLength="50" />
-          <Property Name="Normal_Nucleoli" Type="varchar" MaxLength="50" />
-          <Property Name="Mitoses" Type="varchar" MaxLength="50" />
-          <Property Name="Class" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <EntityType Name="R_Functions">
           <Key>
-            <PropertyRef Name="functionName" />
+            <PropertyRef Name="Metric" />
           </Key>
-          <Property Name="functionName" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="script" Type="varchar" MaxLength="256" />
+          <Property Name="Metric" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="temptable">
+        <EntityType Name="pre96">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Metric" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="varchar" MaxLength="16" />
+          <Property Name="Metric" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -69,8 +38,8 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
           <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ML_DBModelStoreContainer">
-          <EntitySet Name="R_Functions" EntityType="Self.R_Functions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="temptable" EntityType="Self.temptable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="post96" EntityType="Self.post96" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pre96" EntityType="Self.pre96" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
             <DefiningQuery>SELECT 
     [database_firewall_rules].[id] AS [id], 
@@ -104,22 +73,22 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
         </EntityType>
         <EntityContainer Name="ML_DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
-          <EntitySet Name="temptables" EntityType="ML_DBModel.temptable" />
-          <EntitySet Name="R_Functions" EntityType="ML_DBModel.R_Functions" />
+          <EntitySet Name="pre96" EntityType="ML_DBModel.pre96" />
+          <EntitySet Name="post96" EntityType="ML_DBModel.post96" />
         </EntityContainer>
-        <EntityType Name="temptable">
+        <EntityType Name="pre96">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Metric" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Metric" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="R_Functions">
+        <EntityType Name="post96">
           <Key>
-            <PropertyRef Name="functionName" />
+            <PropertyRef Name="Metric" />
           </Key>
-          <Property Name="functionName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="script" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Metric" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -139,23 +108,23 @@ warning 6002: The table/view 'ML_DB.sys.database_firewall_rules' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="temptables">
-            <EntityTypeMapping TypeName="ML_DBModel.temptable">
-              <MappingFragment StoreEntitySet="temptable">
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="pre96">
+            <EntityTypeMapping TypeName="ML_DBModel.pre96">
+              <MappingFragment StoreEntitySet="pre96">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Metric" ColumnName="Metric" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="R_Functions">
-            <EntityTypeMapping TypeName="ML_DBModel.R_Functions">
-              <MappingFragment StoreEntitySet="R_Functions">
-                <ScalarProperty Name="script" ColumnName="script" />
-                <ScalarProperty Name="functionName" ColumnName="functionName" />
+          <EntitySetMapping Name="post96">
+            <EntityTypeMapping TypeName="ML_DBModel.post96">
+              <MappingFragment StoreEntitySet="post96">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Metric" ColumnName="Metric" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

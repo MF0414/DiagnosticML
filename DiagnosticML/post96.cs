@@ -12,9 +12,9 @@ namespace DiagnosticML
     using System;
     using System.Collections.Generic;
     
-    public partial class R_Functions
+    public partial class post96
     {
-        public string functionName { get; set; }
-        public string script { get; set; }
+        public string Metric { get; set; }
+        public string Value { get; set; }
     }
 }

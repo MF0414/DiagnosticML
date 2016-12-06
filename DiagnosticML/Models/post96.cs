@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DiagnosticML.ViewModels
+namespace DiagnosticML.Models
 {
-    public class Results
+    public class post96
     {
-        public string message { get; set; }
+        
     }
 }

@@ -1,5 +1,5 @@
 ﻿// Fetching HTML Elements in Variables by ID.
-var x = document.getElementById("pre96");
+var x = document.getElementById("theDiv");
 var createform = document.createElement('form'); // Create New Element Form
 createform.setAttribute("action", ""); // Setting Action Attribute on Form
 createform.setAttribute("method", "post"); // Setting Method Attribute on Form
@@ -110,27 +110,9 @@ createform.appendChild(linebreak8);
 var submitelement = document.createElement('input'); // Append Submit Button
 submitelement.setAttribute("type", "submit");
 submitelement.setAttribute("name", "submita");
-submitelement.setAttribute("value", "Submit");
+submitelement.setAttribute("value", "Results");
 createform.appendChild(submitelement);
 /******************************************************************************************/
 
 
-
-var pre96 = document.getElementById("choice-pre96");
-var preDiv = document.getElementById("pre96");
-preDiv.className = "hidden";
-
-function toggleSelection() {
-
-    
-        postDiv.className = "active";
-        preDiv.className = "hidden";
-           pre96.checked = true;
-           post96.checked = false;
-       
-    
-   
-}
-pre96.addEventListener("click", toggleSelection, false);
-//post96.addEventListener("click", toggleSelection, false);
 

@@ -1,11 +1,6 @@
 ﻿/* Below line is write to use Google font online */
 @import "http://fonts.googleapis.com/css?family=Ubuntu";
-.hidden{
-    display:none
-}
-.active{
-    visibility:visible
-}
+
 
 div#main{
 width:830px;
@@ -13,27 +8,15 @@ height:650px;
 margin:0 auto;
 font-family:'Ubuntu',sans-serif
 }
-div#pre96{
-text-align:center;
-border:1px solid #ccc;
-width:200px;
-padding:510 400px 500px;
-margin-top:100px;
-margin-left:100px;
-box-shadow:0 0 15px;
-border-radius:6px;
-float:left
-}
-div#post96{
-text-align:center;
-border:1px solid #ccc;
-width:200px;
-padding:510 400px 500px;
-margin-top:100px;
-margin-left:100px;
-box-shadow:0 0 15px;
-border-radius:6px;
-float:left
+div#theDiv {
+    text-align: center;
+    border: 1px solid #ccc;
+    width: 600px;
+    padding: 20px 20px 20px;
+    margin-top: 100px;
+    margin-left: 200px;
+    border-radius: 6px;
+    float: none;
 }
 #main h1{
 margin-top:40px
@@ -51,14 +34,16 @@ margin-top:20px;
 height:35px;
 margin-bottom:25px;
 padding:10px;
-border:3px solid #2BC1F2
+border:3px solid #808080;
+float: none
 }
 textarea{
 width:100%;
 border:3px solid #2BC1F2;
-padding:10px;
+padding:500px;
 margin-bottom:25px;
 margin-top:20px;
+margin-left:50px;
 height:100px;
 resize:none
 }

@@ -1,6 +1,6 @@
 ﻿
 // Fetching HTML Elements in Variables by ID.
-var y = document.getElementById("post96");
+var y = document.getElementById("theDiv");
 var createform2 = document.createElement('form'); // Create New Element Form
 createform2.setAttribute("action", ""); // Setting Action Attribute on Form
 createform2.setAttribute("method", "post"); // Setting Method Attribute on Form
@@ -134,41 +134,9 @@ createform2.appendChild(linebreak17);
 var submitelement2 = document.createElement('input'); // Append Submit Button
 submitelement2.setAttribute("type", "submit");
 submitelement2.setAttribute("name", "submitb");
-submitelement2.setAttribute("value", "Submit");
+submitelement2.setAttribute("value", "Results");
 createform2.appendChild(submitelement2);
-submitelement2.onclick(sendOff);
 
 
-var post96 = document.getElementById("choice-post96");
-var postDiv = document.getElementById("post96");
-postDiv.className = "hidden";
-
-function toggleSelection() {
 
 
-    postDiv.className = "active";
-    preDiv.className = "hidden";
-    post96.checked = false;
-    pre96.checked = true;
-    this.checked = false;
-
-
-}
-post96.addEventListener("click", toggleSelection, false);
-
-function sendOff() {
-   // var data= {
-    alert("values: " + $('.text').val());
-   // };
-   /* $.ajax({
-        url: "/Home/GetEmployer",
-        type: "POST",
-        dataType: "json",  
-        data: JSON.stringify(data),
-        success: function (mydata) {
-            $("#UpdateDiv").html(mydata);
-            history.pushState('', 'New URL: '+href, href); // This Code lets you to change url howyouwant
-        });
-    return false;
-}*/
-}

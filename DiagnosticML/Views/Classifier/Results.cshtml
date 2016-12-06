@@ -1,9 +1,22 @@
-﻿@Model DiagnosticML.ViewModels.ClassificationChoice
+﻿@model DotNet.Highcharts.Highcharts
 @{
-    ViewBag.Title = "Results";
-    
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+<head>
+    <title>Results Page</title>
+</head>
+<body>
+    <h3>@ViewBag.Diagnosis</h3>
+    <h5>@ViewBag.ProbabilityB</h5>
+    <h5>@ViewBag.ProbabilityM</h5>
+    <br />
+    <br />
+    <div>@(Model)</div>
+</body>
 
-<h2>Selected Classification Data Set:  @Model.choiceName , @Model.choiceID</h2>
+
+
 
 

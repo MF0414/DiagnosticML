@@ -6,8 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="057d907df78f483aa434ca4596a01e63" Name="Diagram1">
         <EntityTypeShape EntityType="ML_DBModel.database_firewall_rules" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ML_DBModel.temptable" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="ML_DBModel.R_Functions" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ML_DBModel.pre96" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ML_DBModel.post96" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
