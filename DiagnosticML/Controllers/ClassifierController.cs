@@ -26,8 +26,8 @@ namespace DiagnosticML.Controllers
         public ActionResult Results(ClassificationChoice model)
         {
 
-
-           
+            
+            
         
 
                 return View(calculateDiagnosis(model));
@@ -42,7 +42,7 @@ namespace DiagnosticML.Controllers
             ML_DBEntities dbML = new ML_DBEntities();
 
 
-            if (model.choiceName == "Pre-1996 Classification")
+            if (model.choiceID == 0)
             {
 
                 var priorProbabilityM = Convert.ToDouble(
@@ -376,7 +376,7 @@ namespace DiagnosticML.Controllers
 
                 if ((postdiagnosisLikelihoodB * priorProbabilityB) >= (postdiagnosisLikelihoodM * priorProbabilityM))
                 {
-                    ViewBag.diagnosis = "Diagnosis: Benign";
+                    ViewBag.diagnosis = model.choiceName; //"Diagnosis: Benign";
                     ViewBag.probabilityB = "The Likelihood Maximum of a Benign Tumor: " + (postdiagnosisLikelihoodB * priorProbabilityB).ToString();
                     ViewBag.probabilityM = "The Likelihood Maximun of a Malignant Tumor: " + (postdiagnosisLikelihoodM * priorProbabilityM).ToString();
 

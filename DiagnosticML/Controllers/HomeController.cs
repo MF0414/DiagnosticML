@@ -14,7 +14,7 @@ namespace DiagnosticML.Controllers
     public class HomeController : Controller
     {
        
-        ClassifierController classifierController = new ClassifierController();
+        
         
 
         public ActionResult Index()
@@ -37,7 +37,7 @@ namespace DiagnosticML.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "";
 
             return View();
         }

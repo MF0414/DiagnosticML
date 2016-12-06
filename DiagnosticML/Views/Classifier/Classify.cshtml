@@ -6,22 +6,22 @@
 
 <h2>@Model.choiceName Form</h2>
 
-@if (Model.choiceID == 0)
+@if (Model.choiceName == "Pre-1996 Classification") 
 {
-
+    Model.choiceID = 0;
 
     using (Html.BeginForm("Results", "Classifier", FormMethod.Post))
     {
-        
+
         <form>
 
             <div id = "theDiv">
 
-                 @Html.LabelFor(model => model.patientID, "Patient ID   ")
-                 @Html.TextBoxFor(model => model.patientID)
+                 @Html.LabelFor(Model => Model.patientID, "Patient ID   ")
+                 @Html.TextBoxFor(Model => Model.patientID)
                 <br />
-                 @Html.LabelFor(model => model.clumpThickness, "Clump Thickness   ")
-                 @Html.TextBoxFor(model => model.clumpThickness)
+                 @Html.LabelFor(Model => Model.clumpThickness, "Clump Thickness   ")
+                 @Html.TextBoxFor(Model => Model.clumpThickness)
                 <br />       
                  @Html.LabelFor(model => model.uniformitySize, "Uniformity Size  ")
                  @Html.TextBoxFor(model => model.uniformitySize)
