@@ -1,0 +1,59 @@
+﻿@model DiagnosticML.ViewModels.ClassificationChoicePre
+
+@{
+        ViewBag.Title = "Classify";
+
+}
+
+<h2>@Model.choiceName Form</h2>
+
+
+    @using (Html.BeginForm("ResultsPre", "Classifier", FormMethod.Post))
+    {
+
+        <form>
+
+            <div id = "theDiv">
+
+                 @Html.LabelFor(Model => Model.patientID, "Patient ID   ")
+                 @Html.TextBoxFor(Model => Model.patientID)
+                <br />
+                 @Html.LabelFor(Model => Model.clumpThickness, "Clump Thickness   ")
+                 @Html.TextBoxFor(Model => Model.clumpThickness)
+                <br />       
+                 @Html.LabelFor(model => model.uniformitySize, "Uniformity Size  ")
+                 @Html.TextBoxFor(model => model.uniformitySize)
+                <br />
+                @Html.LabelFor(model => model.uniformityShape, "Uninformity Shape   ")
+                @Html.TextBoxFor(model => model.uniformityShape)
+                <br />
+                 @Html.LabelFor(model => model.marginalAdhesion, "Marginal Adhesion   ")
+                 @Html.TextBoxFor(model => model.marginalAdhesion)
+                <br />
+                 @Html.LabelFor(model => model.singleEpithelial, "Single Epithelial Cell Size   ")
+                 @Html.TextBoxFor(model => model.singleEpithelial)
+                <br />
+                 @Html.LabelFor(model => model.bareNuclei, "Bare Nuclei   ")
+                 @Html.TextBoxFor(model => model.bareNuclei)
+                <br />
+                 @Html.LabelFor(model => model.blandChromatin, "Bland Chromatin   ")
+                 @Html.TextBoxFor(model => model.blandChromatin)
+                <br />
+                 @Html.LabelFor(model => model.normalNucleoli, "Normal Nucleoli   ")
+                 @Html.TextBoxFor(model => model.normalNucleoli)
+                <br />
+                 @Html.LabelFor(model => model.mitosis, "Mitosis   ")
+                 @Html.TextBoxFor(model => model.mitosis)
+                <br />
+                <input type="submit" id="submitId" value="Submit" />
+
+            </div>
+
+        </form>
+    }
+
+
+    }
+}
+
+

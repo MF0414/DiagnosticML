@@ -1,12 +1,22 @@
 ﻿@model IEnumerable<DiagnosticML.ViewModels.ClassificationType>
 @{ 
     ViewBag.Title = "Classification";
+    
 }
 <h2>Select Classification Data Set:</h2>
 <ul>
     @foreach (var classification in Model)
     {
-        <li>@Html.ActionLink(classification.className,
-     "Classify", "Classifier", new { className = classification.className, classID = classification.classID }, null)</li>
+        if (classification.classID == 0)
+        {<li>@Html.ActionLink(classification.className,
+        "ClassifyPre", "Classifier", new { className = classification.className, classID = classification.classID }, null)</li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink(classification.className,
+        "ClassifyPost", "Classifier", new { className = classification.className, classID = classification.classID }, null)
+        </li>
+        }
     }
 </ul>

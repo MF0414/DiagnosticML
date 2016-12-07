@@ -218,11 +218,12 @@
     <Compile Include="pre96.cs">
       <DependentUpon>ML_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ClassificationChoicePost.cs" />
     <Compile Include="ViewModels\PostResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ClassificationType.cs" />
     <Compile Include="ViewModels\ClassifierViewModel.cs" />
-    <Compile Include="ViewModels\ClassificationChoice.cs" />
+    <Compile Include="ViewModels\ClassificationChoicePre.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Classifier.css" />
@@ -339,8 +340,10 @@
     <Content Include="Views\Home\Classifier.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Classifier\Classify.cshtml" />
-    <Content Include="Views\Classifier\Results.cshtml" />
+    <Content Include="Views\Classifier\ClassifyPre.cshtml" />
+    <Content Include="Views\Classifier\ResultsPost.cshtml" />
+    <Content Include="Views\Classifier\ClassifyPost.cshtml" />
+    <Content Include="Views\Classifier\ResultsPre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,61 @@
+﻿@model DiagnosticML.ViewModels.ClassificationChoicePost
+
+@{
+        ViewBag.Title = "Classify";
+
+}
+
+<h2>@Model.choiceName Form</h2>
+
+
+    @using (Html.BeginForm("ResultsPost", "Classifier", FormMethod.Post))
+    {
+       
+        <form>
+
+            <div id="theDiv">
+
+                @Html.LabelFor(Model => Model.patientID, "Patient ID")
+                @Html.TextBoxFor(Model => Model.patientID)
+                <br />
+                @Html.LabelFor(Model => Model.radius, "Radius (Values will be Normalized)")
+                @Html.TextBoxFor(Model => Model.radius)
+                <br />
+                @Html.LabelFor(model => model.texture, "Texture (Values will be Normalized)")
+                @Html.TextBoxFor(model => model.texture)
+                <br />
+                @Html.LabelFor(model => model.perimeter, "Perimeter (Values will be Normalized")
+                @Html.TextBoxFor(model => model.perimeter)
+                <br />
+                @Html.LabelFor(model => model.area, "Area (Values will be Normalized")
+                @Html.TextBoxFor(model => model.area)
+                <br />
+                @Html.LabelFor(model => model.smoothness, "Smoothness")
+                @Html.TextBoxFor(model => model.smoothness)
+                <br />
+                @Html.LabelFor(model => model.compactness, "Compactness")
+                @Html.TextBoxFor(model => model.compactness)
+                <br />
+                @Html.LabelFor(model => model.concavity, "Concavity")
+                @Html.TextBoxFor(model => model.concavity)
+                <br />
+                @Html.LabelFor(model => model.concavePts, "Concave Points")
+                @Html.TextBoxFor(model => model.concavePts)
+                <br />
+                @Html.LabelFor(model => model.symmetry, "Symmetry")
+                @Html.TextBoxFor(model => model.symmetry)
+                <br />
+                @Html.LabelFor(model => model.fractalDimension, "Fractal Dimension")
+                @Html.TextBoxFor(model => model.fractalDimension)
+                <br />
+                <input type="submit" id="submitId" value="Submit"/>
+
+            </div>
+
+        </form>
+
+        <div><h2>@ViewBag.back</h2></div>
+    }
+}
+
+

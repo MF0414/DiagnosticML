@@ -14,36 +14,29 @@ namespace DiagnosticML.Controllers
     {
         // GET: Classifier
 
-        public ActionResult Classify(string className, int classID)
+        public ActionResult ClassifyPre(string className, int classID)
         {
-            var classModel = new ClassificationChoice { choiceName = className, choiceID = classID };
-            return View(classModel);
+                var classModel = new ClassificationChoicePre { choiceName = className, choiceID = classID };
+                return View(classModel);
 
+        }//End of ClassifyPre
 
-        }
+        public ActionResult ClassifyPost(string className, int classID)
+        {
+            
+                var classModel = new ClassificationChoicePost { choiceName = className, choiceID = classID };
+                return View(classModel);
+
+        }//End of ClassifyPost
+
 
         [HttpPost]
-        public ActionResult Results(ClassificationChoice model)
-        {
-
-            
-            
-        
-
-                return View(calculateDiagnosis(model));
-            
-              
-            
-
-        }
-
-        public Highcharts calculateDiagnosis(ClassificationChoice model)
+        public ActionResult ResultsPre(ClassificationChoicePre model)
         {
             ML_DBEntities dbML = new ML_DBEntities();
 
 
-            if (model.choiceID == 0)
-            {
+            
 
                 var priorProbabilityM = Convert.ToDouble(
                    (from c in dbML.pre96
@@ -199,9 +192,9 @@ namespace DiagnosticML.Controllers
                     new Series { Name = "Patient " + model.patientID.ToString(), Data = new Data(new object[] { model.clumpThickness, model.uniformitySize, model.uniformityShape, model.marginalAdhesion,
                                                                                                                 model.singleEpithelial, model.bareNuclei, model.blandChromatin, model.normalNucleoli, model.mitosis}) }
             });
+                return View(chart);
 
-                    return chart;
-                }
+            }
                 else
                 {
                     ViewBag.diagnosis = "Diagnosis: Malignant";
@@ -251,13 +244,25 @@ namespace DiagnosticML.Controllers
                     new Series { Name = "Patient " + model.patientID.ToString(), Data = new Data(new object[] { model.clumpThickness, model.uniformitySize, model.uniformityShape, model.marginalAdhesion,
                                                                                                                 model.singleEpithelial, model.bareNuclei, model.blandChromatin, model.normalNucleoli, model.mitosis}) }
             });
+                return View(chart);
 
-                    return chart;
-                }
             }
-            else
-            {
-                model.radius = (model.radius - 6.981) / (28.11 - 6.981);
+            
+   
+
+        }
+
+    [HttpPost]
+    public ActionResult ResultsPost(ClassificationChoicePost model)
+        {
+
+
+
+            ML_DBEntities dbML = new ML_DBEntities();
+
+
+
+            model.radius = (model.radius - 6.981) / (28.11 - 6.981);
                 model.texture = (model.texture - 9.71) / (39.28 - 9.71);
                 model.perimeter = (model.perimeter - 43.79) / (188.5 - 43.79);
                 model.area = (model.area - 143.5) / (2501 - 143.5);
@@ -376,7 +381,7 @@ namespace DiagnosticML.Controllers
 
                 if ((postdiagnosisLikelihoodB * priorProbabilityB) >= (postdiagnosisLikelihoodM * priorProbabilityM))
                 {
-                    ViewBag.diagnosis = model.choiceName; //"Diagnosis: Benign";
+                    ViewBag.diagnosis = "Diagnosis: Benign";
                     ViewBag.probabilityB = "The Likelihood Maximum of a Benign Tumor: " + (postdiagnosisLikelihoodB * priorProbabilityB).ToString();
                     ViewBag.probabilityM = "The Likelihood Maximun of a Malignant Tumor: " + (postdiagnosisLikelihoodM * priorProbabilityM).ToString();
 
@@ -424,7 +429,7 @@ namespace DiagnosticML.Controllers
                                                                                                                 model.smoothness, model.compactness, model.concavity, model.concavePts, model.symmetry, model.fractalDimension}) }
             });
 
-                    return chart;
+                    return View(chart);
                 }
             
                 else
@@ -477,12 +482,12 @@ namespace DiagnosticML.Controllers
                                                                                                                 model.smoothness, model.compactness, model.concavity, model.concavePts, model.symmetry, model.fractalDimension}) }
             });
 
-                    return chart;
+                    return View(chart);
                 }
 
 
             }
-        }
+        
 
         //Calculates Gaussian Probability
         public double calculateProbability(double x, double[] statsArray)
