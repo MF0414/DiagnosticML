@@ -1,7 +1,32 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
 
-<p>Use this area to provide additional information.</p>
+
+<h5>The purpose of this application is to use past patient tumor data to predict, given a new patient's data, 
+    if the tumor is benign or malignant.</h5>
+
+<h3>The Data Sets</h3>
+<p>There are two different classifiers in this application: one uses data from patient data with selected attributes used before 1996;
+    the other data set uses a data set that began to be recorded in 1996. </p>
+
+<h3> The Classification Methodology</h3>
+<p>This application consists of Naive Bayes Classifiers. Values are normalized as noted. The probability of a particular entry is calculated using Bayes Theorem.
+    Class-Conditional Independence and gaussian distribution is assumed for probability calculation. The predicted class selection is the class 
+    for which p(X|C)p(C), that is the probability of the patient data occurring multiplied by the probability of the occurance of
+    each class. </p>
+
+<h3>Classification Accuracy</h3>
+<h4>Pre-1996 Classifier</h4>
+<ul>
+    <li>The Pre-1996 Classifer has an accuracy of 90% based on a test sample size of 50.</li>
+    <li>There is a 4% chance of a false positive.</li>
+    <li>There is a 6% chance of a false negative.</li>
+</ul>
+<h4>Post-1996 Classifier</h4>
+<ul>
+    <li>The Pre-1996 Classifer has an accuracy of 86% based on a test sample size of 50.</li>
+    <li>There is a 2% chance of a false positive.</li>
+    <li>There is a 12% chance of a false negative.</li>
+</ul>

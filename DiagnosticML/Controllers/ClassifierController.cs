@@ -35,8 +35,7 @@ namespace DiagnosticML.Controllers
         {
             ML_DBEntities dbML = new ML_DBEntities();
 
-
-            
+             //Calculate Prior Probabilities
 
                 var priorProbabilityM = Convert.ToDouble(
                    (from c in dbML.pre96
@@ -47,6 +46,8 @@ namespace DiagnosticML.Controllers
                         (from c in dbML.pre96
                          where c.Metric == "Percent Benign"
                          select new { c.Value }).Single().Value);
+            
+            // Pull Benign Values From the Database
 
                 string[,] allkeys = new string[,] {
                 { "Avg Clump Thickness", "stdev Clump Thickness" },
@@ -61,7 +62,7 @@ namespace DiagnosticML.Controllers
                   };
 
                 double[][] numbers = new double[allkeys.Length][];
-                var lout = "";
+                
                 for (int i = 0; i < 9; i++)
                 {
                     double[] statsValues = new double[2];
@@ -85,7 +86,9 @@ namespace DiagnosticML.Controllers
 
                 }
 
-                string[,] allkeysM = new string[,] {
+            // Pull Malignant Values From the Database
+
+                 string[,] allkeysM = new string[,] {
                 { "Avg Clump Thickness M", "stdev Clump Thickness M" },
                 { "Avg Uniformity Shape M", "stdev Uniformity Shape M" },
                 { "Avg Uniformity Size M", "stdev Uniformity Size M" },
@@ -118,7 +121,8 @@ namespace DiagnosticML.Controllers
                     numbersM[i] = statsValues;
                 }
 
-
+                
+                //Calculate Likelihoods
                 var diagnosisLikelihoodB =
                 calculateProbability(model.clumpThickness, numbers[0]) *
                 calculateProbability(model.uniformityShape, numbers[1]) *
@@ -143,6 +147,7 @@ namespace DiagnosticML.Controllers
                 calculateProbability(model.bareNuclei, numbersM[7]) *
                 calculateProbability(model.mitosis, numbersM[8]);
 
+                //Compare p(X|B)p(B) to p(C|M)p(M)
 
                 if ((diagnosisLikelihoodB * priorProbabilityB) >= (diagnosisLikelihoodM * priorProbabilityM))
                 {
@@ -255,29 +260,27 @@ namespace DiagnosticML.Controllers
     [HttpPost]
     public ActionResult ResultsPost(ClassificationChoicePost model)
         {
-
-
-
             ML_DBEntities dbML = new ML_DBEntities();
 
 
-
+            //Normalize Necessary Values
             model.radius = (model.radius - 6.981) / (28.11 - 6.981);
-                model.texture = (model.texture - 9.71) / (39.28 - 9.71);
-                model.perimeter = (model.perimeter - 43.79) / (188.5 - 43.79);
-                model.area = (model.area - 143.5) / (2501 - 143.5);
+            model.texture = (model.texture - 9.71) / (39.28 - 9.71);
+            model.perimeter = (model.perimeter - 43.79) / (188.5 - 43.79);
+            model.area = (model.area - 143.5) / (2501 - 143.5);
 
-                var priorProbabilityM = Convert.ToDouble(
-                    (from c in dbML.post96
-                     where c.Metric == "Percent Malignant"
-                     select new { c.Value }).Single().Value);
+            //Calculate Prior Probabilities
+            var priorProbabilityM = Convert.ToDouble(
+                (from c in dbML.post96
+                 where c.Metric == "Percent Malignant"
+                 select new { c.Value }).Single().Value);
 
-                var priorProbabilityB = Convert.ToDouble(
-                        (from c in dbML.post96
-                         where c.Metric == "Percent Benign"
-                         select new { c.Value }).Single().Value);
+            var priorProbabilityB = Convert.ToDouble(
+                (from c in dbML.post96
+                 where c.Metric == "Percent Benign"
+                 select new { c.Value }).Single().Value);
 
-
+            // Pull Benign Values From the Database
                 string[,] allkeys = new string[,] {
                 { "Avg Radius", "stdev Radius" },
                 { "Avg Texture", "stdev Texture" },
@@ -292,7 +295,7 @@ namespace DiagnosticML.Controllers
             };
 
                 double[][] numbers = new double[allkeys.Length][];
-                var lout = "";
+                
                 for (int i = 0; i < 10; i++)
                 {
                     double[] statsValues = new double[2];
@@ -313,10 +316,11 @@ namespace DiagnosticML.Controllers
 
                     numbers[i] = statsValues;
 
-                    lout += " " + statsValues[0] + statsValues[1];
+                    
                 }
 
-                string[,] allkeysM = new string[,] {
+            // Pull Malignant Values From the Database
+                        string[,] allkeysM = new string[,] {
                         { "Avg Radius M", "stdev Radius M" },
                         { "Avg Texture M", "stdev Texture M" },
                         { "Avg Perimeter M", "stdev Perimeter M" },
@@ -352,6 +356,7 @@ namespace DiagnosticML.Controllers
                 }
 
 
+            //Calculate Likelihoods
                 var postdiagnosisLikelihoodB =
                 calculateProbability(model.radius, numbers[0]) *
                 calculateProbability(model.texture, numbers[1]) *
@@ -494,12 +499,7 @@ namespace DiagnosticML.Controllers
         {
             var mean = statsArray[0];
             var stdev = statsArray[1];
-
-
             var exponent = Math.Exp(-(Math.Pow(x - mean, 2) / (2 * Math.Pow(stdev, 2))));
-
-
-
             return (1/(Math.Sqrt(2*Math.PI)*stdev)) * exponent;
         }
 
